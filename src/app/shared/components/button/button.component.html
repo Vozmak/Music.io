@@ -1,0 +1,12 @@
+<button
+  [fullWidth]="fullWidth"
+  [appearance]="appearance"
+  [size]="size"
+  [shape]="shape"
+  [status]="color"
+  [disabled]="disabled"
+  (click)="onClick($event)"
+  nbButton>
+  <nb-icon *ngIf="icon" [icon]="icon"></nb-icon>
+  {{value}}
+</button>

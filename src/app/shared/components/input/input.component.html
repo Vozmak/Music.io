@@ -1,0 +1,18 @@
+<nb-form-field>
+  <nb-icon *ngIf="icon"
+           nbPrefix
+           [icon]="icon"
+           pack="eva"
+  ></nb-icon>
+  <input [fullWidth]="fullWidth"
+         [placeholder]="placeholder"
+         [value]="value"
+         [(ngModel)]="value"
+         [status]="color"
+         [fieldSize]="fieldSize"
+         [shape]="shape"
+         [type]="type"
+         [disabled]="disabled"
+         (ngModelChange)="onChange($event)"
+         nbInput>
+</nb-form-field>
