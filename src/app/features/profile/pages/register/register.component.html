@@ -1,1 +1,28 @@
-<p>register works!</p>
+<div class="register-container">
+  <div class="name-container">
+
+    <app-input
+      [placeholder]="'Name'"
+      [icon]="'person-outline'"
+      [color]="status"
+      [value]="username"
+      [disabled]="isDisabledUsernameInput()"
+      (onChangeValue)="onChangeName($event)"
+    ></app-input>
+
+    <app-button
+      *ngIf="username"
+      [appearance]="'ghost'"
+      [icon]="'edit'"
+      (onButtonClick)="editUsername()"
+    ></app-button>
+
+    <app-button
+      *ngIf="!username"
+      [appearance]="'ghost'"
+      [icon]="'checkmark-outline'"
+      [disabled]="isDisabledUsernameButton()"
+      (onButtonClick)="onSubmitName()"
+    ></app-button>
+  </div>
+</div>

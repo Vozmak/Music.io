@@ -1,0 +1,11 @@
+.register-container {
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .name-container {
+    display: flex;
+    justify-content: center;
+  }
+}
