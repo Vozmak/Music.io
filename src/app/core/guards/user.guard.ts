@@ -26,7 +26,7 @@ export class UserGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const user = this.store.selectSnapshot(ProfileState.user);
-    if (user?.name) {
+    if (user?.username) {
       return true;
     }
     this.toastrService.showWarningToastr({ message: 'After look profile, register please.' });

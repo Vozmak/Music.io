@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { StateHelper } from '../state-helper';
-import { SaveImage, SaveName } from './profile.actions';
+import { SetImage, SetName } from './profile.actions';
 
 export interface ProfileStateModel {
-  name: string | null;
+  username: string | null;
   image: string | null;
 }
 
@@ -25,19 +25,29 @@ export class ProfileState extends StateHelper<ProfileStateModel>{
     return state;
   }
 
-  @Action(SaveName)
-  saveName(context: StateContext<ProfileStateModel>, { name }: SaveName) {
-    const { patchState } = context
+  @Selector()
+  static username(state: ProfileStateModel): string | null {
+    return state.username;
+  }
+
+  @Selector()
+  static icon(state: ProfileStateModel): string | null {
+    return state.image;
+  }
+
+  @Action(SetName)
+  saveName(context: StateContext<ProfileStateModel>, { username }: SetName) {
+    const { patchState } = context;
     patchState({
-      name
+      username
     });
 
     this.saveStateToLS(context);
   }
 
-  @Action(SaveImage)
-  saveImage(context: StateContext<ProfileStateModel>, { image }: SaveImage) {
-    const { patchState } = context
+  @Action(SetImage)
+  saveImage(context: StateContext<ProfileStateModel>, { image }: SetImage) {
+    const { patchState } = context;
     patchState({
       image
     });
@@ -50,7 +60,7 @@ export class ProfileState extends StateHelper<ProfileStateModel>{
       return StateHelper.getStateFromLS<ProfileStateModel>(ProfileState.stateName)
     } catch (error) {
       return {
-        name: null,
+        username: null,
         image: null,
       }
     }

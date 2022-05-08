@@ -1,11 +1,11 @@
-export class SaveName {
-  static readonly type = '[Profile] Save Name';
-  constructor(public name: string) {
+export class SetName {
+  static readonly type = '[Profile] Set Name';
+  constructor(public username: string) {
   }
 }
 
-export class SaveImage {
-  static readonly type = '[Profile] Save Image';
+export class SetImage {
+  static readonly type = '[Profile] Set Image';
   constructor(public image: string) {
   }
 }
