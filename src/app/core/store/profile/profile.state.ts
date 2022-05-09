@@ -31,12 +31,12 @@ export class ProfileState extends StateHelper<ProfileStateModel>{
   }
 
   @Selector()
-  static icon(state: ProfileStateModel): string | null {
+  static image(state: ProfileStateModel): string | null {
     return state.image;
   }
 
   @Action(SetName)
-  saveName(context: StateContext<ProfileStateModel>, { username }: SetName) {
+  setName(context: StateContext<ProfileStateModel>, { username }: SetName) {
     const { patchState } = context;
     patchState({
       username
@@ -46,7 +46,7 @@ export class ProfileState extends StateHelper<ProfileStateModel>{
   }
 
   @Action(SetImage)
-  saveImage(context: StateContext<ProfileStateModel>, { image }: SetImage) {
+  setImage(context: StateContext<ProfileStateModel>, { image }: SetImage) {
     const { patchState } = context;
     patchState({
       image
