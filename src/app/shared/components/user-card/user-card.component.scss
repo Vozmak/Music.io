@@ -1,0 +1,10 @@
+::ng-deep {
+  nb-user.size-giant {
+    .user-container {
+      .user-picture {
+        width: 200px !important;
+        height: 200px !important;
+      }
+    }
+  }
+}
