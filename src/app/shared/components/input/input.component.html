@@ -15,4 +15,12 @@
          [disabled]="disabled"
          (ngModelChange)="onChange($event)"
          nbInput>
+  <app-button
+    *ngIf="buttonIcon"
+    [appearance]="'ghost'"
+    [icon]="buttonIcon"
+    [disabled]="buttonDisabled"
+    (onButtonClick)="buttonClick($event)"
+    nbSuffix></app-button>
+
 </nb-form-field>

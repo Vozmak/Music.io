@@ -17,8 +17,11 @@ export class InputComponent implements OnInit {
   @Input() shape: NbComponentShape = 'rectangle';
   @Input() icon: string;
   @Input() disabled: boolean = false;
+  @Input() buttonIcon: string;
+  @Input() buttonDisabled: boolean = false;
 
-  @Output() onChangeValue: EventEmitter<string> = new EventEmitter<string>()
+  @Output() onChangeValue: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onClickButton: EventEmitter<Event> = new EventEmitter<Event>();
 
   constructor() { }
 
@@ -29,4 +32,7 @@ export class InputComponent implements OnInit {
     this.onChangeValue.emit(event);
   }
 
+  public buttonClick(event: Event): void {
+    this.onClickButton.emit(event);
+  }
 }
