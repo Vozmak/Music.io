@@ -1,3 +1,7 @@
 nb-sidebar {
   transition: width 100ms;
 }
+
+nb-sidebar.expanded {
+  width: 200px;
+}
