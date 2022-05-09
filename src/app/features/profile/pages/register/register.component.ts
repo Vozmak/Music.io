@@ -68,7 +68,11 @@ export class RegisterComponent extends Unsubscribe implements OnInit {
   }
 
   public onFileSelected(event: any): void {
-    const file: File = event.target.files[0]
+    const file: File = event.target.files[0];
+    if (!file.type.includes('image')) {
+      //TODO Add modal
+      return;
+    }
     if (file) {
       let image = `data:${file.type};base64,`
       const reader = new FileReader();
