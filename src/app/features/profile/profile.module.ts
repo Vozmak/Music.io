@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NbCardModule, NbRouteTabsetModule } from '@nebular/theme';
+import { NbCardModule, NbIconModule, NbRouteTabsetModule } from '@nebular/theme';
 import { SharedModule } from '../../shared/shared.module';
 import { GeneralComponent } from './pages/general/general.component';
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -23,6 +23,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
     NbRouteTabsetModule,
     NbCardModule,
     SharedModule,
+    NbIconModule,
   ],
 })
 export class ProfileModule { }
