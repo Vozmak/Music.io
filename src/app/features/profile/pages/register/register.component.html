@@ -1,4 +1,25 @@
 <div class="register-container">
+  <div class="image-container">
+    <div class="image">
+
+      <app-user-card
+        [onlyPicture]="true"
+        [picture]="image"
+      ></app-user-card>
+
+      <input type="file" class="file-upload" #fileUpload (change)="onFileSelected($event)">
+
+      <div class="file-handler"
+           (click)="fileUpload.click()">
+        <nb-icon
+          status="basic"
+          icon="edit-outline">
+        </nb-icon>
+      </div>
+
+    </div>
+  </div>
+
   <div class="name-container">
 
     <app-input
@@ -7,22 +28,10 @@
       [color]="status"
       [value]="username"
       [disabled]="isDisabledUsernameInput()"
+      [buttonIcon]="buttonIcon"
       (onChangeValue)="onChangeName($event)"
+      (onClickButton)="onSubmitName()"
     ></app-input>
 
-    <app-button
-      *ngIf="username"
-      [appearance]="'ghost'"
-      [icon]="'edit'"
-      (onButtonClick)="editUsername()"
-    ></app-button>
-
-    <app-button
-      *ngIf="!username"
-      [appearance]="'ghost'"
-      [icon]="'checkmark-outline'"
-      [disabled]="isDisabledUsernameButton()"
-      (onButtonClick)="onSubmitName()"
-    ></app-button>
   </div>
 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { SetName } from '../../../../core/store/profile/profile.actions';
+import { combineLatest, Observable } from 'rxjs';
+import { SetImage, SetName } from '../../../../core/store/profile/profile.actions';
 import { ProfileState } from '../../../../core/store/profile/profile.state';
 import { Unsubscribe } from '../../../../shared/base-classes/unsubscribe';
 
@@ -17,6 +17,8 @@ export class RegisterComponent extends Unsubscribe implements OnInit {
 
   @Select(ProfileState.username) username$: Observable<string>
   public username: string | null;
+  @Select(ProfileState.image) image$: Observable<string>
+  public image: string;
 
   constructor(
     private store: Store,
@@ -25,8 +27,10 @@ export class RegisterComponent extends Unsubscribe implements OnInit {
   }
 
   ngOnInit(): void {
-    this.username$.subscribe(username => {
-      this.username = username;
+    combineLatest([this.username$, this.image$])
+      .subscribe(([username, image]) => {
+        this.username = username;
+        this.image = image
     })
   }
 
@@ -37,28 +41,45 @@ export class RegisterComponent extends Unsubscribe implements OnInit {
     return 'basic';
   }
 
+  public get buttonIcon(): string {
+    if (!this.username) {
+      return 'checkmark-outline';
+    }
+    return 'edit'
+  }
+
   public onChangeName(event: string): void {
     this.name = event;
   }
 
   public onSubmitName(): void {
-    this.store.dispatch(new SetName(this.name))
-  }
-
-  public isDisabledUsernameButton(): boolean {
-    return !this.name;
-
+    if (this.username) {
+      if (this.editable) {
+        this.store.dispatch(new SetName(this.name));
+      }
+      this.editable = !this.editable;
+    } else {
+      this.store.dispatch(new SetName(this.name))
+    }
   }
 
   public isDisabledUsernameInput(): boolean {
     return !!(!this.editable && this.username);
-
   }
 
-  public editUsername(): void {
-    this.editable = !this.editable;
-    if (!this.editable) {
-      this.store.dispatch(new SetName(this.name));
+  public onFileSelected(event: any): void {
+    const file: File = event.target.files[0]
+    if (file) {
+      let image = `data:${file.type};base64,`
+      const reader = new FileReader();
+      reader.onload = this.#handleReaderLoaded.bind(this, image);
+      reader.readAsBinaryString(file);
     }
+  }
+
+  #handleReaderLoaded(image: string, readerEvt: any) {
+    const binaryString = readerEvt.target.result;
+    image += btoa(binaryString);
+    this.store.dispatch(new SetImage(image));
   }
 }

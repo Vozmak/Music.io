@@ -4,8 +4,48 @@
   flex-direction: column;
   justify-content: center;
 
-  .name-container {
+  .name-container,
+  .image-container {
+    margin: 0.5rem;
     display: flex;
     justify-content: center;
+  }
+
+  .image-container {
+    .image {
+      display: flex;
+      position: relative;
+      width: 200px;
+      height: 200px;
+
+      .file-upload {
+        display: none;
+      }
+
+      .file-handler {
+        display: none;
+      }
+
+      &:hover {
+        .file-handler {
+          display: flex;
+          position: absolute;
+          justify-content: center;
+          align-items: center;
+          z-index: 1000;
+          cursor: pointer;
+          width: 100%;
+          height: 100%;
+          background-color: black;
+          opacity: 0.4;
+          border-radius: 50%;
+
+          nb-icon {
+            width: 100px;
+            height: 100px;
+          }
+        }
+      }
+    }
   }
 }
