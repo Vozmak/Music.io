@@ -4,14 +4,16 @@ export const sideMenu: NbMenuItem[] = [
   {
     title: 'Home',
     icon: 'home-outline',
-    link: '/home',
+    link: 'home',
   },
   {
     title: 'Profile',
     icon: 'person-outline',
-    link: '/profile'
+    link: 'profile'
   },
   {
-    title: 'Start game',
+    title: 'Lobbies',
+    icon: 'headphones-outline',
+    link: 'lobbies'
   }
 ]
