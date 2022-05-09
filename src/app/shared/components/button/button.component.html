@@ -8,5 +8,7 @@
   (click)="onClick($event)"
   nbButton>
   <nb-icon *ngIf="icon" [icon]="icon"></nb-icon>
-  {{value}}
+  <div *ngIf="value" class="button-value">
+    {{value}}
+  </div>
 </button>
