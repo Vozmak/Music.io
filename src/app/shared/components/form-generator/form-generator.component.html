@@ -1,0 +1,10 @@
+<div *ngIf="form" class="form">
+  <form [formGroup]="form">
+    <div *ngFor="let field of formField" class="input-wrapper">
+      <nb-form-field>
+        <nb-icon *ngIf="field.labelIcon" nbPrefix [icon]="field.labelIcon"></nb-icon>
+        <input nbInput [type]="field.type" [formControlName]="field.name" [placeholder]="field.placeholder">
+      </nb-form-field>
+    </div>
+  </form>
+</div>
