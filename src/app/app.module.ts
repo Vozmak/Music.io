@@ -16,6 +16,7 @@ import {
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { CoreModule } from './core/core.module';
+import { GameState } from './core/store/game/game.state';
 import { ProfileState } from './core/store/profile/profile.state';
 
 @NgModule({
@@ -31,7 +32,7 @@ import { ProfileState } from './core/store/profile/profile.state';
     NbEvaIconsModule,
     NbSidebarModule.forRoot(),
     CoreModule,
-    NgxsModule.forRoot([ProfileState], {
+    NgxsModule.forRoot([ProfileState, GameState], {
       developmentMode: !environment.production,
     }),
     NgxsLoggerPluginModule.forRoot({
