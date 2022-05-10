@@ -1,10 +1,25 @@
 <div *ngIf="form" class="form">
   <form [formGroup]="form">
-    <div *ngFor="let field of formField" class="input-wrapper">
+    <div *ngFor="let field of formField" class="field-wrapper">
       <nb-form-field>
         <nb-icon *ngIf="field.labelIcon" nbPrefix [icon]="field.labelIcon"></nb-icon>
-        <input nbInput [type]="field.type" [formControlName]="field.name" [placeholder]="field.placeholder">
+        <input nbInput [type]="field.type"
+               [formControlName]="field.name"
+               [min]="field.min"
+               [max]="field.max"
+               [minLength]="field.minLength || 0"
+               [maxLength]="field.maxLength || 128"
+               [placeholder]="field.placeholder">
       </nb-form-field>
     </div>
+
+    <app-button
+      [fullWidth]="true"
+      [value]="buttonValue"
+      [color]="'success'"
+      [appearance]="'outline'"
+      [disabled]="this.form.invalid"
+      (onButtonClick)="submit()"
+    ></app-button>
   </form>
 </div>

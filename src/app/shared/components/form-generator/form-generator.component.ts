@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormField } from '../../../core/interfaces/form-field';
 
@@ -11,6 +11,9 @@ export class FormGeneratorComponent implements OnInit {
 
   @Input() formField: FormField[];
   @Input() labelIcon: string;
+  @Input() buttonValue: string;
+
+  @Output() onSubmit: EventEmitter<any> = new EventEmitter<any>();
 
   public form: FormGroup;
 
@@ -22,6 +25,9 @@ export class FormGeneratorComponent implements OnInit {
     }
   }
 
+  submit(): void {
+    this.onSubmit.emit(this.form.value);
+  }
 
   #formGenerator(): FormGroup {
     const group: any = {};
