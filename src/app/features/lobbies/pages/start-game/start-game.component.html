@@ -1,1 +1,6 @@
-<app-form-generator [formField]="fields"></app-form-generator>
+<div class="start-game-form">
+  <app-form-generator [formField]="fields"
+                      (onSubmit)="createGame($event)"
+                      [buttonValue]="'Create'">
+  </app-form-generator>
+</div>

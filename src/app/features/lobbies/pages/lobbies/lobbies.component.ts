@@ -15,7 +15,7 @@ export class LobbiesComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.router.navigate(['rooms'], { relativeTo: this.route });
+    // this.router.navigate(['rooms'], { relativeTo: this.route });
   }
 
 }
